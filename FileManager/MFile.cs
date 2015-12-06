@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace FileManager
 {
-    class MFile
+    class MFile: FSItem
     {
+        public MFile(string name, MDirectory parent)
+        {
+            this.name = name;
+            this.parent = parent;
+        }
+        public override string getFullName
+        {
+            get { return "[F] " + name; }
+        }
+        public override string getName
+        {
+            get { return name; }
+        }
     }
 }

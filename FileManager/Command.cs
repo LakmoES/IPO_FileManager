@@ -8,7 +8,7 @@ namespace FileManager
 {
     interface Command
     {
-        void Execute();
-        void UnExecute();
+        bool execute(FSItem item);
+        bool unExecute(FSItem item);
     }
 }

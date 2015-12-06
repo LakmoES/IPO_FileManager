@@ -29,15 +29,19 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuGoBack = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuGoForward = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuGoUp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.назадToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.впередToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.вверхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.treeView2 = new System.Windows.Forms.TreeView();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.textBoxAddress1 = new System.Windows.Forms.TextBox();
+            this.textBoxAddress2 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -45,14 +49,35 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.назадToolStripMenuItem,
-            this.впередToolStripMenuItem,
-            this.вверхToolStripMenuItem});
+            this.menuGoBack,
+            this.menuGoForward,
+            this.menuGoUp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(536, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuGoBack
+            // 
+            this.menuGoBack.Name = "menuGoBack";
+            this.menuGoBack.Size = new System.Drawing.Size(51, 20);
+            this.menuGoBack.Text = "Назад";
+            this.menuGoBack.Click += new System.EventHandler(this.menuGoBack_Click);
+            // 
+            // menuGoForward
+            // 
+            this.menuGoForward.Name = "menuGoForward";
+            this.menuGoForward.Size = new System.Drawing.Size(58, 20);
+            this.menuGoForward.Text = "Вперед";
+            this.menuGoForward.Click += new System.EventHandler(this.menuGoForward_Click);
+            // 
+            // menuGoUp
+            // 
+            this.menuGoUp.Name = "menuGoUp";
+            this.menuGoUp.Size = new System.Drawing.Size(50, 20);
+            this.menuGoUp.Text = "Вверх";
+            this.menuGoUp.Click += new System.EventHandler(this.menuGoUp_Click);
             // 
             // menuStrip2
             // 
@@ -84,50 +109,75 @@
             this.помощьToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.помощьToolStripMenuItem.Text = "Помощь";
             // 
-            // назадToolStripMenuItem
+            // listBox1
             // 
-            this.назадToolStripMenuItem.Name = "назадToolStripMenuItem";
-            this.назадToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.назадToolStripMenuItem.Text = "Назад";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 77);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(253, 329);
+            this.listBox1.TabIndex = 4;
+            this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
-            // впередToolStripMenuItem
+            // listBox2
             // 
-            this.впередToolStripMenuItem.Name = "впередToolStripMenuItem";
-            this.впередToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.впередToolStripMenuItem.Text = "Вперед";
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(271, 77);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(253, 329);
+            this.listBox2.TabIndex = 5;
+            this.listBox2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox2_MouseDoubleClick);
             // 
-            // вверхToolStripMenuItem
+            // textBoxAddress1
             // 
-            this.вверхToolStripMenuItem.Name = "вверхToolStripMenuItem";
-            this.вверхToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.вверхToolStripMenuItem.Text = "Вверх";
+            this.textBoxAddress1.Location = new System.Drawing.Point(13, 51);
+            this.textBoxAddress1.Name = "textBoxAddress1";
+            this.textBoxAddress1.Size = new System.Drawing.Size(252, 20);
+            this.textBoxAddress1.TabIndex = 6;
             // 
-            // treeView1
+            // textBoxAddress2
             // 
-            this.treeView1.Location = new System.Drawing.Point(0, 51);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(265, 359);
-            this.treeView1.TabIndex = 2;
+            this.textBoxAddress2.Location = new System.Drawing.Point(271, 51);
+            this.textBoxAddress2.Name = "textBoxAddress2";
+            this.textBoxAddress2.Size = new System.Drawing.Size(252, 20);
+            this.textBoxAddress2.TabIndex = 7;
             // 
-            // treeView2
+            // comboBox1
             // 
-            this.treeView2.Location = new System.Drawing.Point(271, 51);
-            this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(265, 359);
-            this.treeView2.TabIndex = 3;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(12, 412);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(82, 21);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // Form1
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(271, 412);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(82, 21);
+            this.comboBox2.TabIndex = 9;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 410);
-            this.Controls.Add(this.treeView2);
-            this.Controls.Add(this.treeView1);
+            this.ClientSize = new System.Drawing.Size(536, 439);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.textBoxAddress2);
+            this.Controls.Add(this.textBoxAddress1);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.menuStrip2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.MaximizeBox = false;
+            this.Name = "FormMain";
             this.Text = "Файловый менеджер";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -142,14 +192,18 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem назадToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem впередToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem вверхToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuGoBack;
+        private System.Windows.Forms.ToolStripMenuItem menuGoForward;
+        private System.Windows.Forms.ToolStripMenuItem menuGoUp;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
-        private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.TreeView treeView2;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.TextBox textBoxAddress1;
+        private System.Windows.Forms.TextBox textBoxAddress2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 

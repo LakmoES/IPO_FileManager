@@ -20,22 +20,6 @@ namespace FileManager
             fmC1 = new FileManagerCore(listBox1, textBoxAddress1, comboBox1);
             fmC2 = new FileManagerCore(listBox2, textBoxAddress2, comboBox2);
         }
-
-        private void menuGoBack_Click(object sender, EventArgs e)
-        {
-            fmC1.goBack();
-        }
-
-        private void menuGoForward_Click(object sender, EventArgs e)
-        {
-            fmC1.goForward();
-        }
-
-        private void menuGoUp_Click(object sender, EventArgs e)
-        {
-            fmC1.goUp();
-        }
-
         private void listBoxSelect()
         {
             ListBox listBox = null;
@@ -108,6 +92,36 @@ namespace FileManager
             }
             /*else
                 MessageBox.Show("fmC1 is null");*/
+        }
+
+        private void btnBack1_Click(object sender, EventArgs e)
+        {
+            fmC1.goBack();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            fmC1.goForward();
+        }
+
+        private void btnUp1_Click(object sender, EventArgs e)
+        {
+            fmC1.goUp();
+        }
+
+        private void btnBack2_Click(object sender, EventArgs e)
+        {
+            fmC2.goBack();
+        }
+
+        private void btnForward2_Click(object sender, EventArgs e)
+        {
+            fmC2.goForward();
+        }
+
+        private void btnUp2_Click(object sender, EventArgs e)
+        {
+            fmC2.goUp();
         }
 
         

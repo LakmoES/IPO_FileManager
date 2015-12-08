@@ -43,10 +43,6 @@ namespace FileManager
         public static string[] getDrives()
         {
             string[] drives = Environment.GetLogicalDrives();
-            foreach (string s in drives)
-            {
-                Console.WriteLine(s);
-            }
             return drives;
         }
     }

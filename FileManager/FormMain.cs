@@ -20,20 +20,15 @@ namespace FileManager
             fmC1 = new FileManagerCore(listBox1, textBoxAddress1, comboBox1);
             fmC2 = new FileManagerCore(listBox2, textBoxAddress2, comboBox2);
         }
-        private void listBoxSelect()
+        private void listBoxDoubleClick(object sender, MouseEventArgs e)
         {
-            ListBox listBox = null;
             FileManagerCore fmC = null;
-            if (listBox1.Focused)
-            {
-                listBox = listBox1;
+            ListBox listBox = sender as ListBox;
+            if (listBox == listBox1)
                 fmC = fmC1;
-            }
-            if (listBox2.Focused)
-            {
-                listBox = listBox2;
+            if (listBox == listBox2)
                 fmC = fmC2;
-            }
+
             if (listBox.SelectedItem != null)
             {
                 try
@@ -46,39 +41,15 @@ namespace FileManager
                 }
             }
         }
-
-        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            listBoxSelect();
-        }
-        private void listBox2_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            listBoxSelect();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            changeDrive();
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            changeDrive();
-        }
-        private void changeDrive()
+        private void changeDriveInComboBox(object sender, EventArgs e)
         {
             FileManagerCore fmC = null;
-            ComboBox comboBox = null;
-            if (comboBox1.Focused)
-            {
+            ComboBox comboBox = sender as ComboBox;
+            if(comboBox == comboBox1)
                 fmC = fmC1;
-                comboBox = comboBox1;
-            }
-            if (comboBox2.Focused)
-            {
+            if (comboBox == comboBox2)
                 fmC = fmC2;
-                comboBox = comboBox2;
-            }
+
             if (fmC != null)
             {
                 try
@@ -90,8 +61,6 @@ namespace FileManager
                     MessageBox.Show(ex.Message);
                 }
             }
-            /*else
-                MessageBox.Show("fmC1 is null");*/
         }
 
         private void btnBack1_Click(object sender, EventArgs e)

@@ -16,14 +16,12 @@ namespace FileManager
 
         BrowserControll browserControll;
         History history;
-        int upID, enterID;
+        int upID, enterID, deleteID;
         string address;
         public FileManagerCore(ListBox lb, TextBox tb, ComboBox cb) 
         {
             history = new History(FSScan.inDirectory(null, FSScan.getDrives()[0]));
-            browserControll = new BrowserControll();
-            upID = browserControll.addCommand(new UpCommand(history));
-            enterID = browserControll.addCommand(new EnterCommand(history));
+            initCommands();
 
             this.lb = lb;
             this.tb = tb;
@@ -33,12 +31,17 @@ namespace FileManager
 
             drawDrives();
         }
-        public void changeDrive(string drive)
+        private void initCommands()
         {
-            history = new History(FSScan.inDirectory(null, drive));
             browserControll = new BrowserControll();
             upID = browserControll.addCommand(new UpCommand(history));
             enterID = browserControll.addCommand(new EnterCommand(history));
+            deleteID = browserControll.addCommand(new DeleteCommand(history));
+        }
+        public void changeDrive(string drive)
+        {
+            history = new History(FSScan.inDirectory(null, drive));
+            initCommands();
             address = "";
             drawInView();
         }
@@ -61,6 +64,9 @@ namespace FileManager
                 tmp = tmp.getParent;
             }
             tb.Text = address;
+
+            //history = new History(FSScan.inDirectory(history.getRootItem.getParent, address));
+
             lb.Items.Clear();
             foreach (FSItem fsItem in history.getRootItem.getFolder().getChildren)
                 lb.Items.Add(fsItem);
@@ -92,6 +98,32 @@ namespace FileManager
                     item.getFolder().addItem(it);
                 drawInView();
             }
+        }
+        public void delete(FSItem item)
+        {
+            if (browserControll.execute(deleteID, item, true))
+            {
+                for (int i = 0; i < lb.Items.Count; ++i)
+                    if (((FSItem)lb.Items[i]).Equals(item))
+                    {
+                        lb.Items.RemoveAt(i);
+                        break;
+                    }
+                lb.Update();
+                drawInView();
+            }
+        }
+        public void paste()
+        {
+            Console.WriteLine("FMC paste");
+        }
+        public void cut()
+        {
+            Console.WriteLine("FMC cut");
+        }
+        public void copy()
+        {
+            Console.WriteLine("FMC copy");
         }
     }
 }

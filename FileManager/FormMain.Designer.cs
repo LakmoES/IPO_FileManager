@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,11 +49,17 @@
             this.btnBack2 = new System.Windows.Forms.ToolStripButton();
             this.btnForward2 = new System.Windows.Forms.ToolStripButton();
             this.btnUp2 = new System.Windows.Forms.ToolStripButton();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextBtnCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextBtnCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextBtnPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextBtnDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip2
@@ -93,6 +100,7 @@
             this.listBox1.Size = new System.Drawing.Size(253, 329);
             this.listBox1.TabIndex = 4;
             this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxDoubleClick);
+            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBoxMouseDown);
             // 
             // listBox2
             // 
@@ -102,6 +110,7 @@
             this.listBox2.Size = new System.Drawing.Size(253, 329);
             this.listBox2.TabIndex = 5;
             this.listBox2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxDoubleClick);
+            this.listBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBoxMouseDown);
             // 
             // textBoxAddress1
             // 
@@ -251,6 +260,44 @@
             this.btnUp2.Text = "Up";
             this.btnUp2.Click += new System.EventHandler(this.btnUp2_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextBtnCut,
+            this.contextBtnCopy,
+            this.contextBtnPaste,
+            this.contextBtnDelete});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
+            // 
+            // contextBtnCut
+            // 
+            this.contextBtnCut.Name = "contextBtnCut";
+            this.contextBtnCut.Size = new System.Drawing.Size(152, 22);
+            this.contextBtnCut.Text = "Вырезать";
+            this.contextBtnCut.Click += new System.EventHandler(this.contextBtnCut_Click);
+            // 
+            // contextBtnCopy
+            // 
+            this.contextBtnCopy.Name = "contextBtnCopy";
+            this.contextBtnCopy.Size = new System.Drawing.Size(152, 22);
+            this.contextBtnCopy.Text = "Копировать";
+            this.contextBtnCopy.Click += new System.EventHandler(this.contextBtnCopy_Click);
+            // 
+            // contextBtnPaste
+            // 
+            this.contextBtnPaste.Name = "contextBtnPaste";
+            this.contextBtnPaste.Size = new System.Drawing.Size(152, 22);
+            this.contextBtnPaste.Text = "Вставить";
+            this.contextBtnPaste.Click += new System.EventHandler(this.contextBtnPaste_Click);
+            // 
+            // contextBtnDelete
+            // 
+            this.contextBtnDelete.Name = "contextBtnDelete";
+            this.contextBtnDelete.Size = new System.Drawing.Size(152, 22);
+            this.contextBtnDelete.Text = "Удалить";
+            this.contextBtnDelete.Click += new System.EventHandler(this.contextBtnDelete_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,6 +320,7 @@
             this.groupBox2.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,6 +348,11 @@
         private System.Windows.Forms.ToolStripButton btnBack2;
         private System.Windows.Forms.ToolStripButton btnForward2;
         private System.Windows.Forms.ToolStripButton btnUp2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem contextBtnCut;
+        private System.Windows.Forms.ToolStripMenuItem contextBtnCopy;
+        private System.Windows.Forms.ToolStripMenuItem contextBtnPaste;
+        private System.Windows.Forms.ToolStripMenuItem contextBtnDelete;
     }
 }
 

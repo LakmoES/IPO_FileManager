@@ -22,14 +22,17 @@ namespace FileManager
             commandList.Add(command);
             return commandList.IndexOf(command);
         }
-        public bool execute(int commandNumber, FSItem item = null)
+        public bool execute(int commandNumber, FSItem item = null, bool ignoreHistory = false)
         {
             bool result = commandList.ElementAt(commandNumber).execute(item);
-            if (result)
+            if (result && !ignoreHistory)
             {
                 executedCommandList.Push(new KeyValuePair<int, FSItem>(commandNumber, item));
                 return true;
             }
+            else
+                if (ignoreHistory && result)
+                    return true;
             return false;
         }
         public bool unExecute()

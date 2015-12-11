@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace FileManager
 {
@@ -16,6 +17,8 @@ namespace FileManager
         public FormMain()
         {
             InitializeComponent();
+
+            //listBox1.ContextMenuStrip = contextMenuStrip1;
 
             fmC1 = new FileManagerCore(listBox1, textBoxAddress1, comboBox1);
             fmC2 = new FileManagerCore(listBox2, textBoxAddress2, comboBox2);
@@ -92,7 +95,78 @@ namespace FileManager
         {
             fmC2.goUp();
         }
+        private ListBox getListBoxByCursorPos()
+        {
+            if (listBox1.PointToClient(Cursor.Position).X >= 0 && listBox1.PointToClient(Cursor.Position).X <= listBox1.Size.Width)
+                return listBox1;
+            if (listBox2.PointToClient(Cursor.Position).X >= 0 && listBox2.PointToClient(Cursor.Position).X <= listBox2.Size.Width)
+                return listBox2;
+            return null;
+        }
 
-        
+        private void contextBtnDelete_Click(object sender, EventArgs e)
+        {
+            var listBox = getListBoxByCursorPos();
+            Form wait = new FormWait("Идет удаление. Пожалуйста, подождите...");
+            try
+            {
+                wait.Show();
+                if (listBox == listBox1)
+                    fmC1.delete((FSItem)listBox.SelectedItem);
+                if (listBox == listBox2)
+                    fmC2.delete((FSItem)listBox.SelectedItem);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show("Недостаточно прав. Запустите программу от имени администратора и убедитесь в том, что файл не имеет метки \"Только для чтения\".", "Ошибка прав доступа");
+                throw ex;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+            finally
+            {
+                wait.Close();
+            }
+        }
+
+        private void listBoxMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right) return;
+            var index = (sender as ListBox).IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                (sender as ListBox).SelectedIndex = index;
+                contextMenuStrip1.Show(Cursor.Position);
+            }
+        }
+
+        private void contextBtnPaste_Click(object sender, EventArgs e)
+        {
+            var listBox = getListBoxByCursorPos();
+            if (listBox == listBox1)
+                fmC1.paste();
+            if (listBox == listBox2)
+                fmC2.paste();
+        }
+
+        private void contextBtnCopy_Click(object sender, EventArgs e)
+        {
+            var listBox = getListBoxByCursorPos();
+            if (listBox == listBox1)
+                fmC1.copy();
+            if (listBox == listBox2)
+                fmC2.copy();
+        }
+
+        private void contextBtnCut_Click(object sender, EventArgs e)
+        {
+            var listBox = getListBoxByCursorPos();
+            if (listBox == listBox1)
+                fmC1.cut();
+            if (listBox == listBox2)
+                fmC2.cut();
+        }
     }
 }

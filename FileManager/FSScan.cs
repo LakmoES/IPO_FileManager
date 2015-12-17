@@ -7,7 +7,7 @@ using System.IO;
 
 namespace FileManager
 {
-    class FSScan
+    static class FSScan
     {
         public static FSItem inDirectory(MDirectory parent, string path)
         {

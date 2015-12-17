@@ -11,17 +11,14 @@ namespace FileManager
     class History
     {
         FSItem rootItem;
-        FSItem copyBuffer;
         public History(FSItem rootItem)
         {
             this.rootItem = rootItem;
-            copyBuffer = null;
         }
         public FSItem getRootItem
         {
             get { return rootItem; }
         }
-        public void goBack() { Debug.WriteLine("Go Back History."); }
         public bool goUp() 
         {
             if (rootItem.getParent != null)
@@ -61,13 +58,7 @@ namespace FileManager
         }
         public bool delete(FSItem item)
         {
-            string fullPath = item.getName;
-            FSItem tempItem = item;
-            while (tempItem.getParent != null)
-            {
-                fullPath = tempItem.getParent.getName.Trim('\\') + "\\" + fullPath;
-                tempItem = tempItem.getParent;
-            }
+            string fullPath = getFullPath(item);
             Debug.WriteLine("Trying to Delete " + item.getFullName +", path:'" + fullPath + "'");
             if (item.getFolder() != null)
             {
@@ -83,9 +74,38 @@ namespace FileManager
             }
             return true;
         }
-        public void copy(FSItem item)
+        public bool paste(FSItem item)
         {
-            copyBuffer = item;
+            string destinationPath = getFullPath(rootItem) + "\\" + item.getName;
+            string sourcePath = getFullPath(item);
+            if(item.getFolder() == null)
+                File.Copy(sourcePath, destinationPath);
+            else
+            {
+
+                Directory.CreateDirectory(destinationPath);
+                //Now Create all of the directories
+                foreach (string dirPath in Directory.GetDirectories(sourcePath, "*",
+                    SearchOption.AllDirectories))
+                    Directory.CreateDirectory(dirPath.Replace(sourcePath, destinationPath));
+
+                //Copy all the files & Replaces any files with the same name
+                foreach (string newPath in Directory.GetFiles(sourcePath, "*.*",
+                    SearchOption.AllDirectories))
+                    File.Copy(newPath, newPath.Replace(sourcePath, destinationPath), true);
+            }
+            return true;
+        }
+        private string getFullPath(FSItem item)
+        {
+            string fullPath = item.getName;
+            FSItem tempItem = item;
+            while (tempItem.getParent != null)
+            {
+                fullPath = tempItem.getParent.getName.Trim('\\') + "\\" + fullPath;
+                tempItem = tempItem.getParent;
+            }
+            return fullPath;
         }
     }
 }

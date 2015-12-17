@@ -18,8 +18,6 @@ namespace FileManager
         {
             InitializeComponent();
 
-            //listBox1.ContextMenuStrip = contextMenuStrip1;
-
             fmC1 = new FileManagerCore(listBox1, textBoxAddress1, comboBox1);
             fmC2 = new FileManagerCore(listBox2, textBoxAddress2, comboBox2);
         }
@@ -119,7 +117,6 @@ namespace FileManager
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("Недостаточно прав. Запустите программу от имени администратора и убедитесь в том, что файл не имеет метки \"Только для чтения\".", "Ошибка прав доступа");
-                throw ex;
             }
             catch(Exception ex)
             {
@@ -144,29 +141,61 @@ namespace FileManager
 
         private void contextBtnPaste_Click(object sender, EventArgs e)
         {
-            var listBox = getListBoxByCursorPos();
-            if (listBox == listBox1)
-                fmC1.paste();
-            if (listBox == listBox2)
-                fmC2.paste();
+            Form wait = new FormWait("Идет копирование. Пожалуйста, подождите...");
+            try
+            {
+                wait.Show();
+                var listBox = getListBoxByCursorPos();
+                if (listBox == listBox1 && fmC2.getBuffer != null)
+                {
+                    fmC1.paste(fmC2.getBuffer);
+                    if (fmC2.getCutFlag)
+                        fmC2.delete(fmC2.getBuffer);
+                }
+                if (listBox == listBox2 && fmC1.getBuffer != null)
+                {
+                    fmC2.paste(fmC1.getBuffer);
+                    if (fmC1.getCutFlag)
+                        fmC1.delete(fmC1.getBuffer);
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show("Недостаточно прав. Запустите программу от имени администратора и убедитесь в том, что файл не имеет метки \"Только для чтения\".", "Ошибка прав доступа");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                wait.Close();
+            }
         }
 
         private void contextBtnCopy_Click(object sender, EventArgs e)
         {
             var listBox = getListBoxByCursorPos();
+            try
+            {
             if (listBox == listBox1)
-                fmC1.copy();
+                fmC1.copy((FSItem)listBox.SelectedItem);
             if (listBox == listBox2)
-                fmC2.copy();
+                fmC2.copy((FSItem)listBox.SelectedItem);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void contextBtnCut_Click(object sender, EventArgs e)
         {
             var listBox = getListBoxByCursorPos();
             if (listBox == listBox1)
-                fmC1.cut();
+                fmC1.cut((FSItem)listBox.SelectedItem);
             if (listBox == listBox2)
-                fmC2.cut();
+                fmC2.cut((FSItem)listBox.SelectedItem);
         }
     }
 }

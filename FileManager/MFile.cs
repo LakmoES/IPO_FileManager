@@ -7,7 +7,7 @@ using System.IO;
 
 namespace FileManager
 {
-    class MFile: FSItem
+    class MFile: FSItem, Measured
     {
         public MFile(string name, MDirectory parent)
         {

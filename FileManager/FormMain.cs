@@ -18,8 +18,6 @@ namespace FileManager
         {
             InitializeComponent();
 
-            //listBox1.ContextMenuStrip = contextMenuStrip1;
-
             fmC1 = new FileManagerCore(listBox1, textBoxAddress1, comboBox1);
             fmC2 = new FileManagerCore(listBox2, textBoxAddress2, comboBox2);
         }

@@ -65,8 +65,6 @@ namespace FileManager
             }
             tb.Text = address;
 
-            //history = new History(FSScan.inDirectory(history.getRootItem.getParent, address));
-
             lb.Items.Clear();
             foreach (FSItem fsItem in history.getRootItem.getFolder().getChildren)
                 lb.Items.Add(fsItem);
@@ -89,7 +87,6 @@ namespace FileManager
         }
         public void enter(FSItem item)
         {
-            Console.WriteLine("Address:"+address);
             if (browserControll.execute(enterID, item))
             {
                 FSItem newItem = FSScan.inDirectory(item.getParent, address + "\\" + item.getName);
@@ -124,15 +121,12 @@ namespace FileManager
         }
         public void paste()
         {
-            Console.WriteLine("FMC paste");
         }
         public void cut()
         {
-            Console.WriteLine("FMC cut");
         }
         public void copy()
         {
-            Console.WriteLine("FMC copy");
         }
     }
 }

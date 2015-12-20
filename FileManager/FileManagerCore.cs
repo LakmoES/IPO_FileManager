@@ -115,15 +115,12 @@ namespace FileManager
         }
         public long size(FSItem item)
         {
+            Measured measured;
             if (item.getFolder() == null)
-                return (item as MFile).getSize;
+                measured = item as Measured;
             else
-            {
-                long size = 0;
-                foreach (long s in (item as MDirectory).getChildrenSize)
-                    size += s;
-                return size;
-            }
+                measured = new MDirectoryAdapter(item as MDirectory);
+            return measured.getSize;
         }
         public void paste()
         {

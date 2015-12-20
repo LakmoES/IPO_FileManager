@@ -71,7 +71,7 @@ namespace FileManager
             fmC1.goBack();
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void btnForward1_Click(object sender, EventArgs e)
         {
             fmC1.goForward();
         }
@@ -119,7 +119,7 @@ namespace FileManager
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("Недостаточно прав. Запустите программу от имени администратора и убедитесь в том, что файл не имеет метки \"Только для чтения\".", "Ошибка прав доступа");
-                throw ex;
+                //throw ex;
             }
             catch(Exception ex)
             {
@@ -167,6 +167,17 @@ namespace FileManager
                 fmC1.cut();
             if (listBox == listBox2)
                 fmC2.cut();
+        }
+
+        private void contextBtnSize_Click(object sender, EventArgs e)
+        {
+            var listBox = getListBoxByCursorPos();
+            long size = -1; ;
+            if (listBox == listBox1)
+                size = fmC1.size((FSItem)listBox.SelectedItem);
+            if (listBox == listBox2)
+                size = fmC2.size((FSItem)listBox.SelectedItem);
+            MessageBox.Show(size.ToString());
         }
     }
 }

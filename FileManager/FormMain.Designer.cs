@@ -42,7 +42,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnBack1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.btnForward1 = new System.Windows.Forms.ToolStripButton();
             this.btnUp1 = new System.Windows.Forms.ToolStripButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -54,6 +54,7 @@
             this.contextBtnCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.contextBtnPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.contextBtnDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextBtnSize = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -164,7 +165,7 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnBack1,
-            this.toolStripButton2,
+            this.btnForward1,
             this.btnUp1});
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
@@ -183,15 +184,15 @@
             this.btnBack1.Text = "Back";
             this.btnBack1.Click += new System.EventHandler(this.btnBack1_Click);
             // 
-            // toolStripButton2
+            // btnForward1
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::FileManager.Properties.Resources.right;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Forward";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.btnForward1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnForward1.Image = global::FileManager.Properties.Resources.right;
+            this.btnForward1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnForward1.Name = "btnForward1";
+            this.btnForward1.Size = new System.Drawing.Size(23, 22);
+            this.btnForward1.Text = "Forward";
+            this.btnForward1.Click += new System.EventHandler(this.btnForward1_Click);
             // 
             // btnUp1
             // 
@@ -266,9 +267,10 @@
             this.contextBtnCut,
             this.contextBtnCopy,
             this.contextBtnPaste,
-            this.contextBtnDelete});
+            this.contextBtnDelete,
+            this.contextBtnSize});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 136);
             // 
             // contextBtnCut
             // 
@@ -297,6 +299,13 @@
             this.contextBtnDelete.Size = new System.Drawing.Size(152, 22);
             this.contextBtnDelete.Text = "Удалить";
             this.contextBtnDelete.Click += new System.EventHandler(this.contextBtnDelete_Click);
+            // 
+            // contextBtnSize
+            // 
+            this.contextBtnSize.Name = "contextBtnSize";
+            this.contextBtnSize.Size = new System.Drawing.Size(152, 22);
+            this.contextBtnSize.Text = "Размер";
+            this.contextBtnSize.Click += new System.EventHandler(this.contextBtnSize_Click);
             // 
             // FormMain
             // 
@@ -342,7 +351,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnBack1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btnForward1;
         private System.Windows.Forms.ToolStripButton btnUp1;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton btnBack2;
@@ -353,6 +362,7 @@
         private System.Windows.Forms.ToolStripMenuItem contextBtnCopy;
         private System.Windows.Forms.ToolStripMenuItem contextBtnPaste;
         private System.Windows.Forms.ToolStripMenuItem contextBtnDelete;
+        private System.Windows.Forms.ToolStripMenuItem contextBtnSize;
     }
 }
 

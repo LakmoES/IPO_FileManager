@@ -113,6 +113,18 @@ namespace FileManager
                 drawInView();
             }
         }
+        public long size(FSItem item)
+        {
+            if (item.getFolder() == null)
+                return (item as MFile).getSize;
+            else
+            {
+                long size = 0;
+                foreach (long s in (item as MDirectory).getChildrenSize)
+                    size += s;
+                return size;
+            }
+        }
         public void paste()
         {
             Console.WriteLine("FMC paste");

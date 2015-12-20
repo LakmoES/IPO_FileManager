@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics;
 
 namespace FileManager
 {
@@ -51,16 +50,13 @@ namespace FileManager
                 }
                 items = FSScan.inDirectory(this.parent, path).getFolder().getChildren.ToList();
                 List<long> size = new List<long>();
-                Debug.WriteLine(items.Count + " children");
                 foreach (FSItem item in items)
                 {
-                    Debug.Write(item.getName + " ");
                     if (item.getFolder() == null) //it's a file
                         size.Add((item as MFile).getSize);
                     else //it's a dir
                         size.AddRange((item as MDirectory).getChildrenSize);
                 }
-                Debug.Write("\r\n");
                 return size.ToArray();
             }
         }

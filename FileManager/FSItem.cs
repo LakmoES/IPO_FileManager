@@ -27,25 +27,5 @@ namespace FileManager
         {
             get { return parent; }
         }
-        public override bool Equals(Object obj)
-        {
-            if (obj == null)
-                return false;
-
-            FSItem item = obj as FSItem;
-
-            if (!item.getFullName.Equals(this.getFullName))
-                return false;
-
-            FSItem thisTmp = this;
-            while(thisTmp.getParent!=null)
-            {
-                if (!thisTmp.getParent.Equals(item))
-                    return false;
-                thisTmp = thisTmp.getParent;
-                item = item.getParent;
-            }
-            return true;
-        }
     }
 }

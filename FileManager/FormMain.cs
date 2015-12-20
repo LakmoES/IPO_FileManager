@@ -114,7 +114,7 @@ namespace FileManager
                 if (listBox == listBox2)
                     fmC2.delete((FSItem)listBox.SelectedItem);
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("Недостаточно прав. Запустите программу от имени администратора и убедитесь в том, что файл не имеет метки \"Только для чтения\".", "Ошибка прав доступа");
             }
@@ -159,7 +159,7 @@ namespace FileManager
                         fmC1.delete(fmC1.getBuffer);
                 }
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("Недостаточно прав. Запустите программу от имени администратора и убедитесь в том, что файл не имеет метки \"Только для чтения\".", "Ошибка прав доступа");
             }

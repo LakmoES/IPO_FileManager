@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace FileManager
@@ -110,11 +109,9 @@ namespace FileManager
         }
         public void enter(FSItem item)
         {
-            Debug.WriteLine("Address:"+address);
             if (browserControll.execute(enterID, item))
             {
                 FSItem newItem = FSScan.inDirectory(item.getParent, address + "\\" + item.getName);
-                Debug.WriteLine(String.Format("Items on screen:{0}", newItem.getFolder().getChildren.Length));
                 item.getFolder().clearChildren();
                 foreach (FSItem it in newItem.getFolder().getChildren)
                     item.getFolder().addItem(it);

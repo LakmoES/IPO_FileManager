@@ -24,12 +24,10 @@ namespace FileManager
             if (rootItem.getParent != null)
             {
                 rootItem = rootItem.getParent;
-                Debug.WriteLine("GoUp.");
                 return true;
             }
             else
             {
-                Debug.WriteLine("GoUp Fail. NULL-Parent");
                 return false;
             }
         }
@@ -42,8 +40,6 @@ namespace FileManager
             }
             else
             {
-                Debug.WriteLine("Open file: " + item.getName);
-
                 FSItem tmp = item;
                 string path = tmp.getName;
                 while (tmp.getParent != null)
@@ -59,7 +55,6 @@ namespace FileManager
         public bool delete(FSItem item)
         {
             string fullPath = getFullPath(item);
-            Debug.WriteLine("Trying to Delete " + item.getFullName +", path:'" + fullPath + "'");
             if (item.getFolder() != null)
             {
                 if (!Directory.Exists(fullPath))
